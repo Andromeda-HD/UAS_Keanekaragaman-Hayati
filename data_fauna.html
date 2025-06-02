@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Flora Kalimantan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      position: relative;
+      background: #f5f5f5;
+    }
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('img/background2.jpg') center center / cover no-repeat fixed;
+      background-size: cover;
+      background-position: center;
+      filter: blur(2px);
+      z-index: -1;
+    }
+    header {
+      background-color: rgba(47, 89, 51, 0.95);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    header .logo {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    header nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover {
+      color: #ffd700;
+    }
+    .judul {
+      text-align: center;
+      font-size: 2em;
+      color: #e4ac1e;
+      margin: 40px 0 20px;
+      text-shadow: 0 2px 5px rgba(43, 40, 40, 0.7);
+      position: relative;
+      z-index: 1;
+    }
+    .fauna-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .fauna-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .fauna-card:hover {
+      transform: scale(1.03);
+    }
+    .fauna-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #ddd;
+    }
+    .fauna-info {
+      padding: 15px;
+      flex-grow: 1;
+    }
+    .fauna-info p {
+      margin: 5px 0;
+    }
+    .nama-ilmiah {
+      font-style: italic;
+      font-weight: bold;
+      color: #1b492e;
+      font-size: 1em;
+    }
+    .nama-umum {
+      color: #4b4b4b;
+      font-size: 0.95em;
+    }
+    /* Modal */
+    #faunaModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .modal-content {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      max-width: 900px;
+      width: 90%;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    #faunaModal.show .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .modal-image {
+      flex: 1 1 300px;
+    }
+    .modal-image img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .modal-text {
+      flex: 1 1 300px;
+    }
+    .modal-text h3 {
+      margin-top: 0;
+      font-size: 1.8em;
+      color: #256106;
+    }
+    .modal-text p {
+      margin: 10px 0;
+      font-size: 1em;
+      color: #333;
+    }
+    .modal-text p.location {
+      font-style: italic;
+      color: #555;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      z-index: 1100;
+      user-select: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 768px) {
+      .modal-content {
+        flex-direction: column;
+      }
+      .modal-image, .modal-text {
+        flex: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <header>
+    <div class="logo">🐾 Flora Kalimantan</div>
+    <nav>
+      <a href="tentang.html">Tentang Kalimantan</a>
+      <a href="data_fauna.html">Lihat Semua Flora</a>
+      <a href="index.html">Beranda</a>
+    </nav>
+  </header>
+
+  <h2 class="judul">Data Flora Kalimantan</h2>
+
+  <div class="fauna-grid">
+    <div class="fauna-card" onclick="showModal('angrek')">
+      <img src="img/angrek.jpg" alt="Anggrek Hitam" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Coelogyne pandurata</em></p>
+        <p class="nama-umum">Anggrek Hitam</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('semar')">
+      <img src="img/semar.png" alt="Kantung Semar" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Neofelis diardi</em></p>
+        <p class="nama-umum">Kantung Semar</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('ulin')">
+      <img src="img/ulin.jpg" alt="Pohon Kayu Ulin" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Shorea uliginosa</em></p>
+        <p class="nama-umum">Pohon Kayu Ulin</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('kenanga')">
+      <img src="img/kenanga.jpg" alt="Bunga Kenanga" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Cananga odorata</em></p>
+        <p class="nama-umum">Bunga Kenanga</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('pulai')">
+      <img src="img/pulia.jpg" alt="Pulai" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Alstonia scholaris</em></p>
+        <p class="nama-umum">Pulai</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('bintangur')">
+      <img src="img/bintangur.jpg" alt="Bintangur" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Calophyllum inophyllum</em></p>
+        <p class="nama-umum">Bintangur</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('mentawa')">
+      <img src="img/mentawa.jpg" alt="Mentawa" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em><em>Artocarpus anisophyllus</em></p>
+        <p class="nama-umum">Mentawa</p>
+      </div>
+    </div>
+
+    <div class="fauna-card" onclick="showModal('kapurnaga')">
+      <img src="img/kapurnaga.jpg" alt="Kapur Naga" />
+      <div class="fauna-info">
+        <p class="nama-ilmiah"><em>Calophyllum soulattri</em></p>
+        <p class="nama-umum">Kapur Naga</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="faunaModal">
+    <div class="close" onclick="closeModal()">&times;</div>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalImg" src="" alt="Fauna" />
+      </div>
+      <div class="modal-text">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <p id="modalLoc" class="location"></p>
+        <img id="modalLocImg" src=""style="width: 100%; margin-top: 10px; border-radius: 8px;" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const faunaData = {
+      angrek: {
+        title: 'Anggrek Hitam (<em>Coelogyne pandurata</em>)',
+        img: 'img/angrek.jpg',
+        desc: 'Anggrek hitam (Coelogyne pandurata) banyak ditemukan di Kalimantan, terutama di Kalimantan Timur dan sebagian Kalimantan Barat. Anggrek ini termasuk jenis tanaman endemik dan langka di Indonesia, hanya dapat ditemukan di Kalimantan dan Papua. Keberadaan anggrek hitam di Kalimantan, khususnya di Kalimantan Timur, menjadi fokus konservasi karena keindahan dan keunikannya, serta ancaman terhadap habitat aslinya. ',
+      },
+      semar: {
+        title: 'Kantung Semar (<em>Neofelis diardi</em>)',
+        img: 'img/semar.png',
+        desc: 'Kantong semar memiliki persebaran yang luas di Kalimantan. Kalimantan, bersama dengan Sumatra, merupakan salah satu pusat keragaman kantong semar di Indonesia. Wilayah Kalimantan memiliki habitat yang beragam, termasuk hutan gambut, rawa-rawa, dan hutan hujan tropis, yang mendukung pertumbuhan berbagai spesies kantong semar.',
+      },
+      ulin: {
+        title: 'Pohon Kayu Ulin (<em>Shorea uliginosa</em>)',
+        img: 'img/ulin.jpg',
+        desc: 'Pohon ulin memiliki persebaran paling banyak di Kalimantan, terutama di Kalimantan Timur dan Kalimantan Barat. Kalimantan Timur memiliki titik persebaran ulin paling banyak, yaitu di Taman Nasional Kutai (TNK), tepatnya di Sangkima, dengan salah satu pohon ulin terbesar di dunia. Di Kalimantan Barat juga terdapat banyak pohon ulin, dengan 10 titik koleksi herbarium ulin. Pohon ulin (Eusideroxylon zwageri) dikenal sebagai pohon besi karena kayunya yang kuat dan tahan lama. Pohon ini banyak ditemukan di hutan dataran rendah dan perbukitan di Kalimantan. ',
+      },
+      kenanga: {
+        title: 'Bunga Kenanga (<em>Cananga odorata</em>)',
+        img: 'img/kenanga.jpg',
+        desc: 'Bunga kenanga, khususnya jenis kenanga biasa (Cananga odorata), banyak ditemukan dan tumbuh di wilayah Kalimantan, terutama di Kalimantan Selatan. Bunga ini tumbuh subur di daerah tropis, termasuk Kalimantan, yang memiliki iklim yang cocok untuk pertumbuhannya. Kenanga biasa dikenal sebagai bunga yang harum dan sering digunakan dalam upacara adat serta sebagai bahan baku minyak atsiri.',
+      },
+      pulai : {
+        title: 'Pulai  (<em>Alstonia scholaris</em>)',
+        img: 'img/pulia.jpg',
+        desc: 'Pohon pulai tersebar luas di Kalimantan, terutama di daerah rawa, hutan, dan kawasan perkotaan. Jenis pulai yang paling umum adalah Alstonia scholaris, sedangkan jenis lainnya seperti Alstonia angustifolia, Alstonia angustiloba, dan Alstonia macrophylla juga dapat ditemukan di Kalimantan. Pohon pulai memiliki berbagai kegunaan, baik sebagai sumber bahan bangunan, obat-obatan tradisional, maupun sebagai tanaman hias.',
+      },
+      bintangur: {
+        title: 'Bintangur (<em>Calophyllum inophyllum</em>)',
+        img: 'img/bintangur.jpg',
+        desc: 'Tanaman bintangur, dengan nama latin Calophyllum, memiliki persebaran yang luas, baik di Indonesia maupun di luar negeri. Di Indonesia, tanaman ini banyak ditemukan di Papua, Kalimantan, Batam, dan Bangka Belitung. Di luar Indonesia, tanaman ini dapat ditemukan di Madagaskar, Afrika Timur, Asia Selatan dan Tenggara, Kepulauan Pasifik, Hindia Barat, dan Amerika Selatan.',
+      },
+      mentawa: {
+        title: 'Mentawa (<em>Artocarpus anisophyllus</em>)',
+        img: 'img/mentawa.jpg',
+        desc: 'Tanaman mentawa, yang memiliki nama latin Artocarpus anisophyllus, memiliki persebaran yang luas di wilayah Asia Tenggara, khususnya di Indonesia. Tanaman ini banyak ditemukan di hutan hujan tropis, baik di pulau Kalimantan, Sumatra, dan pulau-pulau di sekitarnya, termasuk Semenanjung Malaysia. Mentawa merupakan tanaman khas Kalimantan, khususnya di Kalimantan Barat. Di Kalimantan, buah mentawa banyak ditemui di hutan-hutan dataran rendah dengan ketinggian hingga 1.200 meter di atas permukaan laut. ',
+      },
+      kapurnaga: {
+        title: 'Kapur Naga (<em>Calophyllum soulattri</em>)',
+        img: 'img/kapurnaga.jpg',
+        desc: 'Tanaman kapur naga (Calophyllum soulattri) tersebar luas di wilayah Asia Selatan, Asia Tenggara, dan Australia. Di Indonesia, kapur naga dapat ditemukan di berbagai pulau, termasuk Kalimantan Tengah, Selain kapur naga, tanaman ini juga dikenal dengan nama daerah lain seperti bintangur, gamer, atau sulatri. ',
+      }
+    };
+
+    function showModal(faunaKey) {
+      const modal = document.getElementById('faunaModal');
+      const data = faunaData[faunaKey];
+      if (!data) return;
+
+      document.getElementById('modalImg').src = data.img;
+      document.getElementById('modalImg').alt = data.title;
+      document.getElementById('modalTitle').innerHTML = data.title;
+      document.getElementById('modalDesc').textContent = data.desc;
+      document.getElementById('modalLoc').textContent = data.location;
+
+
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // disable scroll
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('faunaModal');
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto'; // enable scroll
+    }
+
+    // Klik luar modal menutup modal
+    window.onclick = function(event) {
+      const modal = document.getElementById('faunaModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
