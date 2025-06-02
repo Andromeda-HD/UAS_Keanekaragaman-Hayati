@@ -1,132 +1,219 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tentang Kalimantan</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      background-color: #1b2a10;
-      min-height: 100vh;
-      position: relative;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tentang Kalimantan - Desain Keren</title>
 
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('img/backgroun1.jpg') center center / cover no-repeat fixed;
-      background-size: cover;
-      background-position: center;
-      filter: blur(6px);
-      z-index: -1;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #1b2a10 0%, #3c5a2d 100%);
+    font-family: 'Lora', serif;
+    color: #eef1e6;
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(47, 89, 51, 0.8);
+    backdrop-filter: saturate(180%) blur(15px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
+  }
+
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: 0.12em;
+    user-select: none;
+    color: #d4e1b5;
+  }
+
+  nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #d4e1b5;
+    text-decoration: none;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 3px;
+    background: #ffe066;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    color: #ffe066;
+  }
+
+  nav a:hover::after,
+  nav a:focus::after {
+    width: 100%;
+  }
+
+  main.container {
+    max-width: 900px;
+    margin: 140px auto 60px;
+    background: rgba(255 255 255 / 0.1);
+    padding: 45px 55px;
+    border-radius: 24px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    margin-bottom: 48px;
+    color: #e4f9b7;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+
+  img.kalimantan-img {
+    display: block;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto 50px;
+    border-radius: 24px;
+    box-shadow: 0 22px 60px rgba(47, 89, 51, 0.15);
+    border: 6px solid #afca70;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  img.kalimantan-img:hover {
+    transform: scale(1.06) rotate(1deg);
+    box-shadow: 0 32px 80px rgba(70, 140, 50, 0.85);
+  }
+
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 36px;
+    color: #d9e3b9;
+    text-align: justify;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* Highlight box untuk paragraf penting */
+  .highlight-box {
+    background: rgba(255 255 255 / 0.15);
+    border-left: 6px solid #ffe066;
+    padding: 18px 24px;
+    margin-bottom: 48px;
+    font-style: italic;
+    color: #fff8cc;
+    box-shadow: 0 6px 20px rgba(255 224 102 / 0.4);
+    border-radius: 12px;
+  }
+
+  @media (max-width: 720px) {
     header {
-      background-color: rgba(47, 89, 51, 0.95);
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
+      padding: 18px 25px;
     }
-
-    header nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+    .logo {
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
     }
-
-    header nav a:hover {
-      color: #ffd700;
+    nav {
+      gap: 22px;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 60px auto 80px;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 1;
-      color: #fff;
+    nav a {
+      font-size: 1rem;
     }
-
+    main.container {
+      margin: 110px 18px 50px;
+      padding: 35px 30px;
+      border-radius: 20px;
+    }
     h1 {
-      text-align: center;
-      color: #c2f149;
-      margin-bottom: 30px;
-      font-size: 2.8rem;
-      text-shadow: 0 0 5px #000000;
+      font-size: 2.6rem;
+      margin-bottom: 36px;
     }
-
-    .kalimantan-img {
-      display: block;
-      margin: 0 auto 30px auto;
-      max-width: 450px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-      border: 3px solid #094518;
+    img.kalimantan-img {
+      margin-bottom: 36px;
+      max-width: 100%;
     }
-
     p {
-      line-height: 1.8;
       font-size: 1.1rem;
-      margin-bottom: 20px;
-      text-align: justify;
+      margin-bottom: 28px;
     }
-  </style>
+    .highlight-box {
+      margin-bottom: 36px;
+      padding: 14px 18px;
+    }
+  }
+</style>
 </head>
 <body>
 
-  <div class="background-image"></div>
+<header>
+  <div class="logo">🌿 Tentang Kalimantan</div>
+  <nav>
+    <a href="tentang.html">Tentang Kalimantan</a>
+    <a href="data_fauna.html">Lihat Semua Flora</a>
+    <a href="index.html">Beranda</a>
+  </nav>
+</header>
 
-  <header>
-    <div class="logo">🌿 Tentang Kalimantan</div>
-    <nav>
-      <a href="tentang.html">Tentang Kalimantan</a>
-      <a href="data_fauna.html">Lihat Semua Flora</a>
-      <a href="index.html">Beranda</a>
-    </nav>
-  </header>
+<main class="container" role="main">
+  <h1>Pulau Kalimantan</h1>
+  <img src="img/kalimantan.png" alt="Peta Kalimantan" class="kalimantan-img" />
+  
+  <p>
+    Kalimantan adalah wilayah pulau terbesar ketiga di dunia dan bagian dari wilayah Indonesia yang dikenal karena kekayaan alam dan keanekaragaman hayatinya. Pulau ini memiliki hutan hujan tropis yang luas dan merupakan rumah bagi berbagai spesies langka seperti orangutan, bekantan, macan dahan Borneo, serta banyak flora dan fauna endemik lainnya.
+  </p>
 
-  <div class="container">
-    <h1>Pulau Kalimantan</h1>
-    <!-- Gambar Kalimantan -->
-    <img src="img/kalimantan.png" alt="Peta Kalimantan" class="kalimantan-img" />
-
+  <div class="highlight-box">
     <p>
-      Kalimantan adalah wilayah pulau terbesar ketiga di dunia dan bagian dari wilayah Indonesia yang dikenal karena kekayaan alam dan keanekaragaman hayatinya. Pulau ini memiliki hutan hujan tropis yang luas dan merupakan rumah bagi berbagai spesies langka seperti orangutan, bekantan, macan dahan Borneo, serta banyak flora dan fauna endemik lainnya.
-    </p>
-
-    <p>
-      Kalimantan dibagi menjadi beberapa provinsi di Indonesia: Kalimantan Barat, Kalimantan Tengah, Kalimantan Selatan, Kalimantan Timur, dan Kalimantan Utara. Pulau ini juga memiliki bagian yang termasuk dalam negara Malaysia (Sabah dan Sarawak) serta Brunei Darussalam.
-    </p>
-
-    <p>
-      kalimantan juga memiliki berbagai flora yang unik, yang mana meruapakn salah satiu pulau dengan keanekaragaman hayati tertinggi di dunia. Hutan Kalimantan menyimpan berbagai jenis pohon, seperti meranti, ulin, dan jelutung, serta tanaman obat yang digunakan oleh masyarakat lokal. Hutan ini juga berperan penting dalam penyerapan karbon dioksida dan pengaturan iklim global.
-    </p>
-
-    <p>
-      Selain kekayaan alam, Kalimantan juga dikenal akan budaya lokalnya yang kaya, termasuk berbagai suku Dayak yang memiliki tradisi, seni, dan bahasa yang unik. Kegiatan budaya seperti Festival Dahau di Kutai Barat merupakan wujud pelestarian warisan leluhur.
-    </p>
-
-    <p>
-      Dengan potensi luar biasa ini, Kalimantan menjadi fokus penting dalam upaya pelestarian alam, pendidikan lingkungan, dan pengembangan berkelanjutan di Indonesia dan dunia.
+      Kalimantan juga memiliki berbagai flora yang unik, yang mana merupakan salah satu pulau dengan keanekaragaman hayati tertinggi di dunia. Hutan Kalimantan menyimpan berbagai jenis pohon, seperti meranti, ulin, dan jelutung, serta tanaman obat yang digunakan oleh masyarakat lokal. Hutan ini juga berperan penting dalam penyerapan karbon dioksida dan pengaturan iklim global.
     </p>
   </div>
+
+  <p>
+    Kalimantan dibagi menjadi beberapa provinsi di Indonesia: Kalimantan Barat, Kalimantan Tengah, Kalimantan Selatan, Kalimantan Timur, dan Kalimantan Utara. Pulau ini juga memiliki bagian yang termasuk dalam negara Malaysia (Sabah dan Sarawak) serta Brunei Darussalam.
+  </p>
+  
+  <p>
+    Selain kekayaan alam, Kalimantan juga dikenal akan budaya lokalnya yang kaya, termasuk berbagai suku Dayak yang memiliki tradisi, seni, dan bahasa yang unik. Kegiatan budaya seperti Festival Dahau di Kutai Barat merupakan wujud pelestarian warisan leluhur.
+  </p>
+  
+  <p>
+    Dengan potensi luar biasa ini, Kalimantan menjadi fokus penting dalam upaya pelestarian alam, pendidikan lingkungan, dan pengembangan berkelanjutan di Indonesia dan dunia.
+  </p>
+</main>
 
 </body>
 </html>

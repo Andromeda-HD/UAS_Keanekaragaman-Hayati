@@ -1,142 +1,267 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flora Kalimantan</title>
-    <style>
-        :root {
-            --main-color: #2f5933;       /* Warna utama (navbar, tombol) */
-            --background-color: #2f5933 20px; /* Warna latar halaman */
-            --highlight-color: #98a59855;  /* Warna “Tahukah Kamu?” */
-            --text-light: rgb(255, 255, 255);
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: var(--background-color);
-        }
-
-        header {
-            background-color: var(--main-color);
-            color: var(--text-light);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        header nav a {
-            color: var(--text-light);
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-    header nav a:hover {
-      color: #ffd700;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flora Kalimantan</title>
+  <style>
+    :root {
+      --main-color: #2f5933;
+      --background-color: #e9f0e9;
+      --text-light: #ffffff;
+      --hover-color: #ffd700;
+      --text-dark: #1b2e14;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(47, 89, 51, 0.15);
+      --card-shadow-hover: rgba(47, 89, 51, 0.3);
     }
 
-        .hero {
-            background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            color: rgb(0, 0, 0);
-            padding: 100px 20px;
-            text-align: center;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .blurred-background {
-            background: rgba(15, 15, 15, 0.087);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            border-radius: 10px;
-            margin: 20px;
-            padding: 20px;
-        }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2em;
-            color: rgb rgb(0, 0, 0);
-            margin: 40px 0 20px;
-        }
+    /* Navbar */
+    header {
+      background-color: var(--main-color);
+      color: var(--text-light);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            flex-wrap: wrap;
-        }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
 
-        .gallery img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    nav a {
+      color: var(--text-light);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
+    nav a:hover,
+    nav a:focus {
+      color: var(--hover-color);
+      outline: none;
+    }
 
-        .quote-box {
-            background-color: var(--highlight-color);
-            color: var(--text-light);
-            margin: 0 auto 40px;
-            padding: 20px 30px;
-            max-width: 800px;
-            font-style: italic;
-            font-size: 1.1em;
-            border-left: 5px solid var(--main-color);
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 80px;
+      text-align: center;
+      color: var(--text-light);
+      padding-left: 20px;
+      padding-right: 20px;
+      overflow: hidden;
+    }
 
-        @media screen and (max-width: 768px) {
-            .gallery img {
-                width: 90%;
-                height: auto;
-            }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(47, 89, 51, 0.85) 0%, rgba(47, 89, 51, 0.65) 50%, rgba(47, 89, 51, 0.85) 100%);
+      z-index: 0;
+    }
 
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
+    .hero-content {
+      position: relative;
+      max-width: 650px;
+      z-index: 1;
+    }
 
-            header nav a {
-                margin: 10px 5px;
-            }
-        }
-    </style>
+    .hero-content h1 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.7);
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      margin: 0 auto;
+      max-width: 480px;
+    }
+
+    /* Section Title */
+    .section-title {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--main-color);
+      letter-spacing: 0.05em;
+    }
+
+    /* Info Cards Container */
+    .info-cards {
+      max-width: 1100px;
+      margin: 30px auto 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    /* Info Card Styling */
+    .info-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 30px 25px;
+      box-shadow: 0 8px 20px var(--card-shadow);
+      color: var(--main-color);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      user-select: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 15px 40px var(--card-shadow-hover);
+    }
+
+    .info-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      fill: var(--main-color);
+      margin-top: 4px;
+    }
+
+    .info-content {
+      flex: 1;
+    }
+
+    .info-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+        max-width: 100%;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .info-cards {
+        grid-template-columns: 1fr;
+        margin: 20px auto 60px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">🐾 Flora Kalimantan</div>
-        <nav>
-            <a href="tentang.html">Tentang Kalimantan</a>
-            <a href="data_fauna.html">Lihat Semua Flora</a>
-            <a href="index.html">Beranda</a>
-        </nav>
-    </header>
+<header>
+  <div class="logo">🌿 Flora Kalimantan</div>
+  <nav>
+    <a href="tentang.html">Tentang Kalimantan</a>
+    <a href="data_fauna.html">Lihat Semua Flora</a>
+    <a href="index.html">Beranda</a>
+  </nav>
+</header>
 
-    <div class="hero">
-        <div class="blurred-background">
-            <h1>Selamat Datang di Flora Kalimantan</h1>
-            <p>Portal untuk menjelajahi keanekaragaman hayati Kalimantan</p>
-        </div>
-    </div>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Selamat Datang di Flora Kalimantan</h1>
+    <p>Portal untuk menjelajahi keanekaragaman hayati Kalimantan</p>
+  </div>
+</section>
 
-    <div class="section-title">Tahukah Kamu?</div>
-    <div class="quote-box">
-        "Kalimantan adalah rumah bagi lebih dari 15.000 spesies tumbuhan dan 3.000 spesies hewan, menjadikannya salah satu hutan hujan tropis terkaya di dunia."
+<h2 class="section-title">Tahukah Kamu?</h2>
+
+<div class="info-cards">
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 16v-2h2v2h-2zm0-4V6h2v6h-2z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Keanekaragaman Tumbuhan</div>
+      Kalimantan memiliki lebih dari 15.000 spesies tumbuhan, termasuk pohon raksasa, anggrek langka, dan banyak tanaman endemik yang hanya ditemukan di sini.
     </div>
+  </div>
+
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm1-17h-2v6h2V5zm0 8h-2v2h2v-2z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Fauna Eksotis</div>
+      Rumah bagi lebih dari 3.000 spesies hewan, termasuk orangutan, bekantan, kucing hutan, dan burung eksotis yang jarang ditemui di tempat lain.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-10 10 9.974 9.974 0 001.682 5.678l13.996-13.995A9.968 9.968 0 0012 2zm6.318 4.158L4.323 18.152a9.962 9.962 0 0011.995-2.702l2.705-2.703a10.002 10.002 0 00-1.705-8.589z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Peran Ekologis</div>
+      Hutan Kalimantan berfungsi sebagai penyimpan karbon besar, penting untuk mengontrol perubahan iklim dan menjaga keseimbangan ekosistem global.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 00-5 5v5h10v-5a5 5 0 00-5-5zm-3 5a3 3 0 116 0v3H9v-3zm3-8a3 3 0 100 6 3 3 0 000-6z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Pengetahuan Tradisional</div>
+      Suku asli Kalimantan menjaga kelestarian alam dengan kearifan lokal yang memanfaatkan flora dan fauna secara berkelanjutan.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14v-4l-8-6-8 6v4l8 6 8-6z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Ekosistem Unik</div>
+      Pulau ini memiliki ekosistem rawa gambut dan hutan mangrove yang sangat penting sebagai habitat bagi banyak spesies langka.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 3.99 4 6.5 4c1.54 0 3.04.99 3.57 2.36h1.87C14.46 4.99 15.96 4 17.5 4 20.01 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <div class="info-content">
+      <div class="info-title">Konservasi dan Pelestarian</div>
+      Berbagai upaya konservasi dilakukan untuk melindungi flora dan fauna, termasuk taman nasional dan program rehabilitasi habitat untuk spesies terancam.
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
